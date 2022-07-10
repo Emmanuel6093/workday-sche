@@ -1,59 +1,34 @@
-// global variables
-var events = {};
-var currentTime = moment();
-
-var hourNine = moment().hour(9).format("hA");
-var hourTen = moment().hour(10).format("hA");
-var hourEleven = moment().hour(11).format("hA");
-var hourTwelve = moment().hour(12).format("hA");
-var hourOne = moment().hour(13).format("hA");
-var hourTwo = moment().hour(14).format("hA");
-var hourThree = moment().hour(15).format("hA");
-var hourFour = moment().hour(16).format("hA");
-var hourFive = moment().hour(17).format("hA");
-
-$("#hour-nine").text(hourNine);
-$("#hour-ten").text(hourTen);
-$("#hour-eleven").text(hourEleven);
-$("#hour-twelve").text(hourTwelve);
-$("#hour-one").text(hourOne);
-$("#hour-two").text(hourTwo);
-$("#hour-three").text(hourThree);
-$("#hour-four").text(hourFour);
-$("#hour-five").text(hourFive);
 
 // sets current time in header
 $("#currentDay").text(moment().format("dddd, MMMM Do, YYYY"));
+$(document).ready(function () {
+    auditEvents();
+    $("#event-hour-nine").val(localStorage.getItem("hour-9"));
+    $("#event-hour-ten").val(localStorage.getItem("hour-10"));
+    $("#event-hour-eleven").val(localStorage.getItem("hour-11"));
+    $("#event-hour-twelve").val(localStorage.getItem("hour-12"));
+    $("#event-hour-one").val(localStorage.getItem("hour-1"));
+    $("#event-hour-two").val(localStorage.getItem("hour-2"));
+    $("#event-hour-three").val(localStorage.getItem("hour-3"));
+    $("#event-hour-four").val(localStorage.getItem("hour-4"));
+    $("#event-hour-five").val(localStorage.getItem("hour-5"));
+  });
 
 // saves events to and loads events from local storage
 function saveEvents() {
-    hourNineInput = $("#event-hour-nine").text();
-    hourTenInput = $("#event-hour-ten").text();
-    hourElevenInput = $("#event-hour-eleven").text();
-    hourTwelveInput = $("#event-hour-twelve").text();
-    hourOneInput = $("#event-hour-one").text();
-    hourTwoInput = $("#event-hour-two").text();
-    hourThreeInput = $("#event-hour-three").text();
-    hourFourInput = $("#event-hour-four").text();
-    hourFiveInput = $("#event-hour-five").text();
+  hourNineInput = $("#event-hour-nine").val();
+  hourTenInput = $("#event-hour-ten").val();
+  hourElevenInput = $("#event-hour-eleven").val();
+  hourTwelveInput = $("#event-hour-twelve").val();
+  hourOneInput = $("#event-hour-one").val();
+  hourTwoInput = $("#event-hour-two").val();
+  hourThreeInput = $("#event-hour-three").val();
+  hourFourInput = $("#event-hour-four").val();
+  hourFiveInput = $("#event-hour-five").val();
 
-    function retrieveEvents() {
-        JSON.parse(localStorage.getItem(hourNineInput)) || [];
-      }
-  
-    var newEvent = {
-        hour9: hourNineInput,
-        hour10: hourTenInput,
-        hour11: hourElevenInput,
-        hour12: hourTwelveInput,
-        hour1: hourOneInput,
-        hour2: hourTwoInput,
-        hour3: hourThreeInput,
-        hour4: hourFourInput,
-        hour5: hourFiveInput,
-    };
-
-    function storeEvents() {
+console.log(hourTenInput);
+    
+  function storeEvents() {
         localStorage.setItem("hour-9", hourNineInput);
         localStorage.setItem("hour-10", hourTenInput);
         localStorage.setItem("hour-11", hourElevenInput);
@@ -64,8 +39,6 @@ function saveEvents() {
         localStorage.setItem("hour-4", hourFourInput);
         localStorage.setItem("hour-5", hourFiveInput);
       }
-
- retrieveEvents();
  storeEvents();
 }
 
@@ -73,8 +46,8 @@ function saveEvents() {
 $(".saveBtn").on("click", saveEvents);
 
 // applies classes to events based on time
-var auditEvents = function () {
-  $(".time-block").removeClass("past present future");
+ function auditEvents () {
+    var currentHour = moment().hours();
 };
 if (moment().isAfter(moment().hour(17))) {
     $("#event-hour-nine").addClass("past");
