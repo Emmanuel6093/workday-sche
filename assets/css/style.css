@@ -68,6 +68,11 @@ textarea{
   background-color: #06AED5;
   color: white;
 }
+span {
+  display: table;
+  margin: 0 auto;
+  width: 100%;
+}
 
 .saveBtn i:hover {
   font-size: 20px;
